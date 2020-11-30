@@ -38,7 +38,7 @@ class TransactionViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         let tsv = segue.destination as? TransactionSummaryViewController
         tsv?.transactionType = transactionType
         tsv?.amount = Double(amountText.text!)!
-        tsv?.transactions = decodedTransactionArray
+        tsv?.transactions = transactionList
     }
     @IBOutlet weak var transactionsDropDown: UIPickerView!
     @IBOutlet weak var accountType: UITextField!
@@ -54,12 +54,7 @@ class TransactionViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     }
     
     @IBAction func Proceed(_ sender: Any) {
-        transactionList.append(Transaction(json:["name": transactionType, "amount": Double(amountText.text!)!]))
-        debugPrint(transactionList[0].amount)
-        let encodedData = NSKeyedArchiver.archivedData(withRootObject: transactionList)
-        debugPrint(encodedData)
-        UserDefaults.standard.set(encodedData, forKey: "transactiionList")
-
+        transactionList.append(Transaction(name: transactionType, amount: Double(amountText.text!)!))
         if transactionType == "Deposit"
         {
             depositMoney()
@@ -73,9 +68,6 @@ class TransactionViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         else if transactionType == "payCreditCardBill" {
            payCreditCardBill()
         }
-         decodedTransactionArray = NSKeyedUnarchiver.unarchiveObject(with: UserDefaults.standard.object(forKey: "transactiionList") as! Data) as! [Transaction]
-        decodedTransactionArray.append(transactionList[0])
-        debugPrint(decodedTransactionArray)
         performSegue(withIdentifier: "transaction", sender: self)
     }
     
