@@ -15,6 +15,13 @@
 		B6027E6F2574227200A8E864 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6027E6D2574227200A8E864 /* LaunchScreen.storyboard */; };
 		B6027E7A2574227200A8E864 /* NetBankingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6027E792574227200A8E864 /* NetBankingTests.swift */; };
 		B6027E852574227200A8E864 /* NetBankingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6027E842574227200A8E864 /* NetBankingUITests.swift */; };
+		B6027E982574296000A8E864 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6027E972574296000A8E864 /* Account.swift */; };
+		B6027E9E257433C300A8E864 /* netbanking_data in Resources */ = {isa = PBXBuildFile; fileRef = B6027E9D257433C300A8E864 /* netbanking_data */; };
+		B6027EA325743CD500A8E864 /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6027EA225743CD500A8E864 /* TransactionViewController.swift */; };
+		B6027EAB2574588600A8E864 /* TransactionSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6027EAA2574588600A8E864 /* TransactionSummaryViewController.swift */; };
+		B6027EB02574613F00A8E864 /* TransactionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6027EAF2574613F00A8E864 /* TransactionListController.swift */; };
+		B6027EB52574636200A8E864 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6027EB42574636200A8E864 /* TransactionCell.swift */; };
+		B6027EBA2574654700A8E864 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6027EB92574654700A8E864 /* Transaction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +56,13 @@
 		B6027E802574227200A8E864 /* NetBankingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetBankingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6027E842574227200A8E864 /* NetBankingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetBankingUITests.swift; sourceTree = "<group>"; };
 		B6027E862574227200A8E864 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6027E972574296000A8E864 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		B6027E9D257433C300A8E864 /* netbanking_data */ = {isa = PBXFileReference; lastKnownFileType = text; path = netbanking_data; sourceTree = "<group>"; };
+		B6027EA225743CD500A8E864 /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
+		B6027EAA2574588600A8E864 /* TransactionSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSummaryViewController.swift; sourceTree = "<group>"; };
+		B6027EAF2574613F00A8E864 /* TransactionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListController.swift; sourceTree = "<group>"; };
+		B6027EB42574636200A8E864 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
+		B6027EB92574654700A8E864 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +120,13 @@
 				B6027E6B2574227200A8E864 /* Assets.xcassets */,
 				B6027E6D2574227200A8E864 /* LaunchScreen.storyboard */,
 				B6027E702574227200A8E864 /* Info.plist */,
+				B6027E972574296000A8E864 /* Account.swift */,
+				B6027E9D257433C300A8E864 /* netbanking_data */,
+				B6027EA225743CD500A8E864 /* TransactionViewController.swift */,
+				B6027EAA2574588600A8E864 /* TransactionSummaryViewController.swift */,
+				B6027EAF2574613F00A8E864 /* TransactionListController.swift */,
+				B6027EB42574636200A8E864 /* TransactionCell.swift */,
+				B6027EB92574654700A8E864 /* Transaction.swift */,
 			);
 			path = NetBanking;
 			sourceTree = "<group>";
@@ -232,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6027E6F2574227200A8E864 /* LaunchScreen.storyboard in Resources */,
+				B6027E9E257433C300A8E864 /* netbanking_data in Resources */,
 				B6027E6C2574227200A8E864 /* Assets.xcassets in Resources */,
 				B6027E6A2574227100A8E864 /* Main.storyboard in Resources */,
 			);
@@ -258,9 +280,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6027EB02574613F00A8E864 /* TransactionListController.swift in Sources */,
+				B6027EAB2574588600A8E864 /* TransactionSummaryViewController.swift in Sources */,
+				B6027EA325743CD500A8E864 /* TransactionViewController.swift in Sources */,
 				B6027E672574227100A8E864 /* ViewController.swift in Sources */,
+				B6027E982574296000A8E864 /* Account.swift in Sources */,
 				B6027E632574227100A8E864 /* AppDelegate.swift in Sources */,
+				B6027EB52574636200A8E864 /* TransactionCell.swift in Sources */,
 				B6027E652574227100A8E864 /* SceneDelegate.swift in Sources */,
+				B6027EBA2574654700A8E864 /* Transaction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
