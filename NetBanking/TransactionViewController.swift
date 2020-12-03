@@ -38,7 +38,7 @@ class TransactionViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         let tsv = segue.destination as? TransactionSummaryViewController
         tsv?.transactionType = transactionType
         tsv?.amount = Double(amountText.text!)!
-        tsv?.transactions = transactionList
+        tsv?.transactions = decodedTransactionArray
     }
     @IBOutlet weak var transactionsDropDown: UIPickerView!
     @IBOutlet weak var accountType: UITextField!
@@ -55,6 +55,40 @@ class TransactionViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     
     @IBAction func Proceed(_ sender: Any) {
         transactionList.append(Transaction(name: transactionType, amount: Double(amountText.text!)!))
+        
+        guard let transactionData = UserDefaults.standard.object(forKey: "transactions") as? NSData else {
+            do {
+                  let transactions = try NSKeyedArchiver.archivedData(withRootObject: transactionList, requiringSecureCoding: false)
+                  UserDefaults.standard.set(transactions, forKey: "transactions")
+              } catch {
+                  print(error.localizedDescription)
+              }
+            self.decodedTransactionArray.append(transactionList[0])
+            debugPrint("iam here")
+            return
+           }
+     
+        //
+       
+        do {
+            guard let localtransactions = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(transactionData as Data) as? [Transaction] else { return }
+            print(localtransactions[0].amount)
+            for transaction in localtransactions {
+             self.decodedTransactionArray.append(transaction)
+                print(transaction.name)
+            }
+            debugPrint("here too")
+            self.decodedTransactionArray.append(transactionList[0])
+            do {
+                   let data = try NSKeyedArchiver.archivedData(withRootObject: decodedTransactionArray, requiringSecureCoding: false)
+                   UserDefaults.standard.set(data, forKey: "transactions")
+               } catch {
+                   print(error.localizedDescription)
+               }
+        } catch {
+            print(error.localizedDescription)
+        }
+        
         if transactionType == "Deposit"
         {
             depositMoney()

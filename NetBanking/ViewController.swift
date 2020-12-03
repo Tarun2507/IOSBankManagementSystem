@@ -27,6 +27,7 @@ class ViewController: UIViewController {
                //pass values from self to the other v
     }
     @IBAction func login(_ sender: Any) {
+        UserDefaults.standard.removeObject(forKey: "transactions")
         let customer_id = Int(customerId.text!)
         let pwd = password.text
         for account in accounts {

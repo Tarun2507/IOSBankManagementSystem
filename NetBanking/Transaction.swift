@@ -6,7 +6,17 @@
 //
 
 import Foundation
-class Transaction{
+class Transaction: NSObject, NSCoding {
+    func encode(with coder: NSCoder) {
+        coder.encode(name, forKey: "name")
+        coder.encode(amount,forKey: "amount")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        self.amount = aDecoder.decodeDouble(forKey: "amount")
+        self.name = aDecoder.decodeObject(forKey: "name") as? String ?? ""
+    }
+    
     
     var name : String
     var amount : Double
