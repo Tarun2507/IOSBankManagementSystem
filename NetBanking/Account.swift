@@ -6,6 +6,7 @@
 //
 
 import Foundation
+//Account class with attributes
 class Account {
     var customer_id : Int
     var password : String

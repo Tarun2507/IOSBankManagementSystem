@@ -9,11 +9,12 @@ import UIKit
 
 class TransactionViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
     var transactionType = ""
+    // array to be passed to TransactionListController
     var decodedTransactionArray = [Transaction]()
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
+    //Implementing the pickerview protocol methods
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return transactions.count
     }
@@ -21,6 +22,7 @@ class TransactionViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         return transactions[row]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        //checking the type of transaction and assigning transactiontype correspondingly
         if row == 0 {
         transactionType = "Deposit"
         }
@@ -34,10 +36,12 @@ class TransactionViewController: UIViewController,UIPickerViewDelegate,UIPickerV
             transactionType = "payCreditCardBill"
         }
     }
+    //prpearing the segue to TransactionSummaryAfterPerfomingTransaction
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let tsv = segue.destination as? TransactionSummaryViewController
         tsv?.transactionType = transactionType
         tsv?.amount = Double(amountText.text!)!
+        //sending the locallysavedTransaction data
         tsv?.transactions = decodedTransactionArray
     }
     @IBOutlet weak var transactionsDropDown: UIPickerView!
@@ -55,7 +59,7 @@ class TransactionViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     
     @IBAction func Proceed(_ sender: Any) {
         transactionList.append(Transaction(name: transactionType, amount: Double(amountText.text!)!))
-        
+        // setting the data locally
         guard let transactionData = UserDefaults.standard.object(forKey: "transactions") as? NSData else {
             do {
                   let transactions = try NSKeyedArchiver.archivedData(withRootObject: transactionList, requiringSecureCoding: false)
@@ -71,6 +75,7 @@ class TransactionViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         //
        
         do {
+            //getting the locally saved transaction array data and appending the new transaction performed
             guard let localtransactions = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(transactionData as Data) as? [Transaction] else { return }
             print(localtransactions[0].amount)
             for transaction in localtransactions {
@@ -104,7 +109,7 @@ class TransactionViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         }
         performSegue(withIdentifier: "transaction", sender: self)
     }
-    
+    // Transaction functionalitiesß
     func depositMoney() {
         for account in accounts {
             if account.customer_id==activeAccount?.customer_id && account.account_type == accountType.text {

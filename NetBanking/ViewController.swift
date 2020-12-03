@@ -8,25 +8,30 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    //Connecting the outlets
     @IBOutlet weak var customerId: UITextField!
     @IBOutlet weak var password: UITextField!
+    
+    @IBOutlet weak var inCorrectCredentialsLabel: UILabel!
     var accounts = [Account]()
     var currentAccount : Account? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         fillData()
+        // setting the incorrect creds label hidden initially
+        inCorrectCredentialsLabel.isHidden = true
         // Do any additional setup after loading the view.
     }
-
+    //preparing the segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        //setting the active account to pass to transactionviewcontrollerß
         let tvc = segue.destination as? TransactionViewController
         tvc!.accounts = self.accounts
         tvc!.activeAccount = self.currentAccount!
-               //pass values from self to the other v
     }
+    // validating the login credentials
     @IBAction func login(_ sender: Any) {
+        //removing the transactions object key when a new session starts
         UserDefaults.standard.removeObject(forKey: "transactions")
         let customer_id = Int(customerId.text!)
         let pwd = password.text
@@ -36,9 +41,13 @@ class ViewController: UIViewController {
                 performSegue(withIdentifier: "transaction", sender: self)
                debugPrint("valid")
             }
+            else {
+                inCorrectCredentialsLabel.isHidden = false
+            }
         }
     }
     func fillData() {
+        //getting the data from the file
         guard let resourceString = Bundle.main.resourcePath,
             let fileURL = URL(string: "file://\(resourceString)/netbanking_data")
         else {

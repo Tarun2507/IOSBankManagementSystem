@@ -19,11 +19,13 @@ class TransactionSummaryViewController: UIViewController {
         amountTextField.text = String(amount)
         transactionTypeTextField.text = transactionType
     }
+    // ppreparing the segue to TransactionListController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let tlc  = segue.destination as? TransactionListController
         tlc?.transactions = transactions
 
     }
+    // performing the segue to TransactionListController
     @IBAction func getTransactions(_ sender: Any) {
         performSegue(withIdentifier: "transactionList", sender: self)
     }
